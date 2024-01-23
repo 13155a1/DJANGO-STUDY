@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect
 from .models import Student
 from .forms import StdForm, StdModelForm
+from rest_framework.response import Response
+from django.http import JsonResponse 
+from rest_framework.decorators import api_view
+from .serializers import BaseStudentSerializer
 # from django.core.mail import EmailMessage
 
 def home(request):
@@ -53,4 +57,14 @@ def create_model_form(request):
     
     return render(request, 'model_form_create.html', {'form': form})
 
+@api_view(['GET'])
+def student_detail(request, id):
+    student = Student.objects.get(id=id)
+    serializer = BaseStudentSerializer(student)
+    return Response(serializer.data)
 
+@api_view(['GET'])
+def student_list(request):
+    stdList = Student.objects.all()
+    serializer = BaseStudentSerializer(stdList, many=True)
+    return Response(serializer.data)

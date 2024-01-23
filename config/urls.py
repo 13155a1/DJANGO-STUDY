@@ -20,7 +20,11 @@ from myapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
+
     path('create_html_form/', views.create_html_form, name='create_html_form'), 
     path('create_django_form/', views.create_django_form, name='create_django_form'),
     path('create_model_form/', views.create_model_form, name='create_model_form'),
+
+    path('student_detail/<int:id>/', views.student_detail, name='student_detail'),
+    path('student_list/', views.student_list, name='student_list'),
 ]
