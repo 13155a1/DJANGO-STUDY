@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from myapp import views
+from rest_framework.urlpatterns import format_suffix_patterns
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
@@ -28,3 +29,5 @@ urlpatterns = [
     path('student_detail/<int:id>/', views.student_detail, name='student_detail'),
     path('student_list/', views.student_list, name='student_list'),
 ]
+
+# urlpatterns = format_suffix_patterns(urlpatterns)

@@ -5,6 +5,8 @@ from rest_framework.response import Response
 from django.http import JsonResponse 
 from rest_framework.decorators import api_view
 from .serializers import BaseStudentSerializer
+from rest_framework.parsers import JSONParser
+from rest_framework import status
 # from django.core.mail import EmailMessage
 
 def home(request):
@@ -63,8 +65,16 @@ def student_detail(request, id):
     serializer = BaseStudentSerializer(student)
     return Response(serializer.data)
 
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
 def student_list(request):
-    stdList = Student.objects.all()
-    serializer = BaseStudentSerializer(stdList, many=True)
-    return Response(serializer.data)
+    if request.method == 'GET':
+        stdList = Student.objects.all()
+        serializer = BaseStudentSerializer(stdList, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    elif request.method == 'POST':
+        serializer = BaseStudentSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
