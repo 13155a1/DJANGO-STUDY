@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
 from .models import Student
 from .forms import StdForm, StdModelForm
-from django.core.mail import EmailMessage
+# from django.core.mail import EmailMessage
 
 def home(request):
-    email = EmailMessage('Django Email Test Title', 'Test Content', to=['ppy040@naver.com'])
-    email.send()
+    # email = EmailMessage('Django Email Test Title', 'Test Content', to=['ppy040@naver.com'])
+    # email.send()
     return render(request, 'index.html')
 
 def create_html_form(request):
