@@ -7,7 +7,7 @@ from rest_framework.decorators import api_view
 from .serializers import BaseStudentSerializer
 from rest_framework.parsers import JSONParser
 from rest_framework import status
-# from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage
 
 def home(request):
     # email = EmailMessage('Django Email Test Title', 'Test Content', to=['ppy040@naver.com'])
