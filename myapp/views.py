@@ -109,7 +109,7 @@ class StudnetDetial(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-# Blog의 목록을 보여주는 역할
+# Student의 목록을 보여주는 역할
 class StudentList(APIView):
     # student list (GET)
     def get(self, request):
