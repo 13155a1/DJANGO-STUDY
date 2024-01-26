@@ -9,6 +9,7 @@ from rest_framework.parsers import JSONParser
 from rest_framework import status
 from django.core.mail import EmailMessage
 from rest_framework.views import APIView
+from rest_framework.generics import ListCreateAPIView
 
 def home(request):
     # email = EmailMessage('Django Email Test Title', 'Test Content', to=['ppy040@naver.com'])
@@ -126,3 +127,9 @@ class StudentList(APIView):
             serializer.save() # 저장
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+# generic view 실습
+class StudentListCreateView(ListCreateAPIView):
+    queryset = Student.objects.all()
+    serializer_class = BaseStudentSerializer

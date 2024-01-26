@@ -31,6 +31,8 @@ urlpatterns = [
 
     path('student_detail_api_view/<int:pk>/', views.StudnetDetial.as_view()),
     path('student_list_api_view/', views.StudentList.as_view()),
+
+    path('student_list_create_view/', views.StudentListCreateView.as_view()),
 ]
 
 # urlpatterns = format_suffix_patterns(urlpatterns)
